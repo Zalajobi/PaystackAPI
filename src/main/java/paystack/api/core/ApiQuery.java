@@ -3,6 +3,7 @@ package paystack.api.core;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONObject;
 import paystack.api.constants.Authorization;
 
 import com.mashape.unirest.http.HttpResponse;
@@ -38,6 +39,20 @@ public class ApiQuery extends Authorization {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    public Map<String, Object> connectAndQueryWithPut(HashMap<String, Object> query, String url) {
+        try {
+            HttpResponse<JsonNode> queryForResponse = Unirest.put(url)
+                    .header("Accept", "application/json")
+                    .header("Authorization", "Bearer " + getKey())
+                    .fields(query)
+                    .asJson();
+            return queryForResponse.getBody().getObject().toMap();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

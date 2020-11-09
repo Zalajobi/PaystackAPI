@@ -2,7 +2,7 @@ package paystack.api.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import paystack.api.model.Customer;
+import paystack.api.model.customer.Customer;
 
 import java.util.List;
 
